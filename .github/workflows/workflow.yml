@@ -46,7 +46,7 @@ jobs:
 
             - name: phpstan
               run: |
-                vendor/bin/phpstan analyse --level=5 --memory-limit=1G
+                ./vendor/bin/phpstan analyse --level=5 --memory-limit=1G
 
             - name: phpinsights
               run: |
