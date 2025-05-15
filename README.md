@@ -1,5 +1,9 @@
 ## GitHub Actions CI/CD Workflow Details
 
+
+![CI/CD Workflow Overview](./image.webp)
+
+
 This project uses a GitHub Actions workflow for continuous integration and testing, defined in `.github/workflows/workflow.yml`. Below is a detailed explanation of how the workflow operates and what each step does.
 
 ### Workflow Triggers
