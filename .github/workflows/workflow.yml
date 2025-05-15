@@ -63,6 +63,10 @@ jobs:
                 --min-architecture=90 --min-style=90 \
                 --ansi --format=github-action
 
+            - name: Show DB config
+              run: |
+                grep DB_ .env
+
             - name: Run tests
               run: |
                 php artisan test
