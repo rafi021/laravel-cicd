@@ -71,4 +71,22 @@ jobs:
               run: |
                 php artisan test
 
+            - name: Deployment to Main Server
+              if: github.ref == 'refs/heads/main'
+              uses: appleboy/ssh-action@master
+              with:
+                host: '192.168.0.34'
+                username: 'root'
+                password: 'root'
+                script: |
+                  cd /var/www/htm/laravel-cicd && ./main_deploy.sh main
+            - name: Deployment to Dev Server
+              if: github.ref == 'refs/heads/dev'
+              uses: appleboy/ssh-action@master
+              with:
+                host: '192.168.0.23'
+                username: 'root'
+                password: 'root'
+                script: |
+                  cd /var/www/htm/laravel-cicd && ./main_deploy.sh main
 
