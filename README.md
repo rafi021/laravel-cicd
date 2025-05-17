@@ -77,6 +77,31 @@ The workflow uses smart caching for Composer dependencies:
 
 ---
 
+## Deployment
+
+Deployment is automated via GitHub Actions and occurs after tests pass:
+
+- **Main Branch:**  
+  When code is pushed to the `main` branch, the workflow connects to the main server using SSH and runs the deployment script (`main_deploy.sh`).  
+  - SSH credentials are securely managed with GitHub Secrets.
+  - The script puts the application into maintenance mode, pulls the latest code, runs migrations, sets permissions, clears and caches configuration, and brings the application back up.
+
+- **Dev Branch:**  
+  When code is pushed to the `dev` branch, a similar process runs, but targets the development server.
+
+**Deployment Steps:**
+1. SSH into the target server.
+2. Change directory to `/var/www/htm/laravel-cicd`.
+3. Execute `./main_deploy.sh main`.
+
+```bash
+chmod +x main_deploy.sh
+```
+
+You can customize the deployment script ([main_deploy.sh](main_deploy.sh)) as needed for your environment.
+
+
+
 ### Summary
 
 This workflow ensures that every code change is automatically:
